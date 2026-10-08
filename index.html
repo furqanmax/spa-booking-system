@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serenity Spa — Book Your Escape</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+  <nav class="landing-nav">
+    <div class="container landing-nav-inner">
+      <a href="/" class="landing-nav-logo">Serenity Spa</a>
+      <div class="landing-nav-links">
+        <a href="#services">Services</a>
+        <a href="#branches">Branches</a>
+        <a href="#about">About</a>
+        <a href="book.html" class="btn btn-primary btn-sm">Book Now</a>
+        <a href="login.html" class="btn btn-ghost btn-sm">Sign In</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="landing-hero">
+    <div class="container landing-hero-content">
+      <h1 id="hero-title">Find Your Inner Peace</h1>
+      <p id="hero-subtitle">Experience the art of relaxation at Serenity Spa. Rejuvenate your body, mind, and spirit with our premium treatments.</p>
+      <a href="book.html" class="btn btn-gold btn-lg">Book Your Appointment</a>
+    </div>
+  </section>
+
+  <section id="services" class="landing-section">
+    <div class="container">
+      <h2 class="landing-section-title">Our Services</h2>
+      <div id="services-grid" class="services-grid">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="branches" class="landing-section">
+    <div class="container">
+      <h2 class="landing-section-title">Our Locations</h2>
+      <div id="branches-grid" class="branches-grid">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="landing-section landing-about">
+    <div class="container">
+      <h2 class="landing-section-title">About Serenity Spa</h2>
+      <div id="about-text" class="landing-about-content">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="landing-cta">
+    <div class="container">
+      <h2>Ready to Relax?</h2>
+      <p>Book your appointment today and discover true serenity.</p>
+      <a href="book.html" class="btn btn-gold btn-lg">Book Now</a>
+    </div>
+  </section>
+
+  <footer class="landing-footer">
+    <div class="container">
+      <p>&copy; <span id="footer-year">2025</span> Serenity Spa. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/views/landing.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — Serenity Spa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--c-stone-100) 0%, var(--c-sage-100) 100%);
+      padding: var(--space-4);
+    }
+
+    .auth-card {
+      background: white;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-modal);
+      padding: var(--space-10);
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .auth-logo {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--c-sage-700);
+      text-align: center;
+      margin-bottom: var(--space-2);
+    }
+
+    .auth-subtitle {
+      text-align: center;
+      color: var(--c-stone-600);
+      margin-bottom: var(--space-8);
+      font-size: 0.9375rem;
+    }
+
+    .auth-toggle {
+      text-align: center;
+      margin-top: var(--space-5);
+      font-size: 0.875rem;
+      color: var(--c-stone-600);
+    }
+
+    .auth-toggle a {
+      color: var(--c-sage-500);
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .auth-toggle a:hover {
+      color: var(--c-sage-700);
+    }
+
+    .auth-error {
+      background: #FEE2E2;
+      color: #991B1B;
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      margin-bottom: var(--space-4);
+      display: none;
+    }
+
+    .auth-success {
+      text-align: center;
+      padding: var(--space-6) 0;
+    }
+
+    .auth-success-icon {
+      font-size: 3rem;
+      color: var(--c-confirmed);
+      margin-bottom: var(--space-4);
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo">Serenity Spa</div>
+      <p class="auth-subtitle" id="auth-subtitle">Sign in to manage your appointments</p>
+
+      <div id="auth-error" class="auth-error"></div>
+
+      <form id="auth-form">
+        <div id="auth-form-fields">
+          <div class="form-group">
+            <label class="form-label" for="auth-email">Email</label>
+            <input type="email" id="auth-email" class="form-input" placeholder="you@example.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="auth-password">Password</label>
+            <input type="password" id="auth-password" class="form-input" placeholder="Enter your password" required autocomplete="current-password" minlength="6">
+          </div>
+          <button type="submit" id="auth-submit" class="btn btn-primary" style="width:100%">Sign In</button>
+        </div>
+      </form>
+
+      <div class="auth-toggle">
+        <span id="auth-toggle-text">Don't have an account?</span>
+        <a id="auth-toggle-link">Create one</a>
+      </div>
+
+      <div style="text-align:center;margin-top:var(--space-4)">
+        <a href="/" style="font-size:0.8125rem">&larr; Back to home</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/views/login.js"></script>
+</body>
+</html>

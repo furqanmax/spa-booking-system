@@ -1,0 +1,219 @@
+.landing-hero {
+  background: linear-gradient(135deg, var(--c-stone-900) 0%, var(--c-sage-700) 100%);
+  color: white;
+  padding: var(--space-16) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><path d="M50 0 L100 50 L50 100 L0 50 Z" fill="white"/></svg>') repeat;
+  background-size: 60px 60px;
+}
+
+.landing-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.landing-hero h1 {
+  font-size: 3rem;
+  color: white;
+  margin-bottom: var(--space-4);
+  font-weight: 700;
+}
+
+.landing-hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: var(--space-8);
+  line-height: 1.7;
+}
+
+.landing-section {
+  padding: var(--space-12) 0;
+}
+
+.landing-section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: var(--space-10);
+  position: relative;
+}
+
+.landing-section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--c-gold-500);
+  margin: var(--space-4) auto 0;
+  border-radius: 2px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.service-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.service-card-image {
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.service-card-body {
+  padding: var(--space-5);
+}
+
+.service-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-2);
+}
+
+.service-card p {
+  color: var(--c-stone-600);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-3);
+  line-height: 1.6;
+}
+
+.service-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-5) var(--space-5);
+}
+
+.service-card-price {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--c-gold-700);
+  font-weight: 600;
+}
+
+.branches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-6);
+}
+
+.branch-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+  border-left: 4px solid var(--c-sage-500);
+}
+
+.branch-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: var(--space-3);
+}
+
+.branch-card p {
+  color: var(--c-stone-600);
+  margin-bottom: var(--space-2);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.landing-about {
+  background: var(--c-stone-100);
+}
+
+.landing-about-content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--c-stone-800);
+}
+
+.landing-cta {
+  text-align: center;
+  padding: var(--space-12) 0;
+  background: linear-gradient(135deg, var(--c-sage-100) 0%, white 100%);
+}
+
+.landing-cta h2 {
+  font-size: 2rem;
+  margin-bottom: var(--space-4);
+}
+
+.landing-cta p {
+  color: var(--c-stone-600);
+  margin-bottom: var(--space-6);
+  font-size: 1.1rem;
+}
+
+.landing-nav {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 100;
+  border-bottom: 1px solid var(--c-stone-100);
+  padding: var(--space-3) 0;
+}
+
+.landing-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.landing-nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--c-sage-700);
+}
+
+.landing-nav-links {
+  display: flex;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.landing-footer {
+  background: var(--c-stone-900);
+  color: var(--c-stone-300);
+  padding: var(--space-10) 0;
+  text-align: center;
+}
+
+.landing-footer p {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .landing-hero h1 { font-size: 2rem; }
+  .landing-hero p { font-size: 1rem; }
+  .landing-section-title { font-size: 1.5rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .branches-grid { grid-template-columns: 1fr; }
+  .landing-nav-links { gap: var(--space-3); }
+}

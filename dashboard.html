@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Serenity Spa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar" id="dashboard-sidebar">
+      <div class="dashboard-sidebar-header">
+        <div class="dashboard-sidebar-logo">Serenity</div>
+        <div class="dashboard-sidebar-role" id="sidebar-role">Loading...</div>
+      </div>
+
+      <nav class="dashboard-nav" id="dashboard-nav">
+        <div class="loading-spinner"></div>
+      </nav>
+
+      <div class="dashboard-sidebar-footer">
+        <div class="dashboard-user-info">
+          <div class="dashboard-user-name" id="sidebar-user-name">—</div>
+          <div class="dashboard-user-branch" id="sidebar-user-branch"></div>
+        </div>
+        <button id="logout-btn" class="btn btn-ghost btn-sm" style="color:var(--c-stone-400);width:100%;justify-content:flex-start;padding:var(--space-2) 0">
+          Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <main class="dashboard-main" id="dashboard-main">
+      <div class="dashboard-main-header">
+        <h1 id="dashboard-title">Dashboard</h1>
+        <div id="dashboard-actions"></div>
+      </div>
+      <div id="dashboard-content" class="dashboard-content">
+        <div class="loading-spinner"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script type="module" src="js/views/admin/dashboard.js"></script>
+</body>
+</html>

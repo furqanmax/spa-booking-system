@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment — Serenity Spa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/booking.css">
+</head>
+<body>
+  <div class="booking-page">
+    <header class="booking-header">
+      <div class="container booking-header-inner">
+        <a href="/" class="booking-logo">Serenity Spa</a>
+        <div>
+          <a href="login.html" id="booking-auth-link" class="btn btn-ghost btn-sm">Sign In</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="booking-main">
+      <div class="booking-container">
+        <div id="booking-steps" class="booking-steps">
+          <div class="booking-step-indicator active" data-step="1">
+            <span class="booking-step-number">1</span>
+            <span class="booking-step-label">Branch</span>
+            <span class="booking-step-connector"></span>
+          </div>
+          <div class="booking-step-indicator" data-step="2">
+            <span class="booking-step-number">2</span>
+            <span class="booking-step-label">Service</span>
+            <span class="booking-step-connector"></span>
+          </div>
+          <div class="booking-step-indicator" data-step="3">
+            <span class="booking-step-number">3</span>
+            <span class="booking-step-label">Staff</span>
+            <span class="booking-step-connector"></span>
+          </div>
+          <div class="booking-step-indicator" data-step="4">
+            <span class="booking-step-number">4</span>
+            <span class="booking-step-label">Date &amp; Time</span>
+            <span class="booking-step-connector"></span>
+          </div>
+          <div class="booking-step-indicator" data-step="5">
+            <span class="booking-step-number">5</span>
+            <span class="booking-step-label">Confirm</span>
+          </div>
+        </div>
+
+        <div id="booking-content" class="booking-card">
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script type="module" src="js/views/booking.js"></script>
+</body>
+</html>

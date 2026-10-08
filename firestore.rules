@@ -1,0 +1,151 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    function getRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+
+    function getStaffDoc() {
+      return get(/databases/$(database)/documents/staff/$(request.auth.uid));
+    }
+
+    function isSuperAdmin() {
+      return isAuth() && getRole() == 'superadmin';
+    }
+
+    function isAdmin() {
+      return isAuth() && (getRole() == 'superadmin' || getRole() == 'admin');
+    }
+
+    function isManagerOf(branchId) {
+      return isAuth() && (
+        isAdmin() ||
+        (getStaffDoc().data.role == 'manager' && getStaffDoc().data.branchId == branchId)
+      );
+    }
+
+    function isStaffOf(branchId) {
+      return isAuth() && (
+        isManagerOf(branchId) ||
+        getStaffDoc().data.branchId == branchId
+      );
+    }
+
+    function isOwner(uid) {
+      return isAuth() && request.auth.uid == uid;
+    }
+
+    match /branches/{branchId} {
+      allow read: if true;
+      allow create, delete: if isSuperAdmin();
+      allow update: if isManagerOf(branchId);
+
+      match /config/settings {
+        allow read: if isStaffOf(branchId);
+        allow write: if isManagerOf(branchId);
+      }
+
+      match /availability/{dayOfWeek} {
+        allow read: if true;
+        allow write: if isManagerOf(branchId);
+      }
+    }
+
+    match /services/{serviceId} {
+      allow read: if true;
+      allow write: if isAdmin();
+
+      match /pricing/{branchId} {
+        allow read: if true;
+        allow write: if isManagerOf(branchId);
+      }
+
+      match /availability/{dayOfWeek} {
+        allow read: if true;
+        allow write: if isAdmin();
+      }
+    }
+
+    match /staff/{staffId} {
+      allow read: if isAuth() && (
+        isAdmin() ||
+        isOwner(staffId) ||
+        (isStaffOf(resource.data.branchId))
+      );
+      allow create: if isAdmin() || isManagerOf(request.resource.data.branchId);
+      allow update: if isManagerOf(resource.data.branchId) || isOwner(staffId);
+      allow delete: if isManagerOf(resource.data.branchId);
+
+      match /availability/{dayOfWeek} {
+        allow read: if isAuth();
+        allow write: if isManagerOf(
+          get(/databases/$(database)/documents/staff/$(staffId)).data.branchId
+        ) || isOwner(staffId);
+      }
+
+      match /holidays/{holidayId} {
+        allow read: if isAuth();
+        allow write: if isManagerOf(
+          get(/databases/$(database)/documents/staff/$(staffId)).data.branchId
+        ) || isOwner(staffId);
+      }
+    }
+
+    match /holidays/{holidayId} {
+      allow read: if true;
+      allow write: if isManagerOf(resource.data.branchId) ||
+                      isManagerOf(request.resource.data.branchId);
+    }
+
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isOwner(userId);
+      allow update: if isOwner(userId) || isAdmin();
+      allow delete: if isSuperAdmin();
+    }
+
+    match /appointments/{appointmentId} {
+      allow read: if isAuth() && (
+        isAdmin() ||
+        isOwner(resource.data.customerId) ||
+        isStaffOf(resource.data.branchId)
+      );
+      allow create: if isAuth() && validateAppointment(request.resource.data);
+      allow update: if isAuth() && (
+        isManagerOf(resource.data.branchId) ||
+        isStaffOf(resource.data.branchId) ||
+        isOwner(resource.data.customerId)
+      ) && validateAppointmentUpdate(resource.data, request.resource.data);
+      allow delete: if isSuperAdmin();
+    }
+
+    match /landingPage/config {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    function validateAppointment(data) {
+      return data.keys().hasAll(['branchId','serviceId','staffId','date','startTime','endTime','status','price']) &&
+        data.status == 'pending' &&
+        data.date is string &&
+        data.startTime is string &&
+        data.endTime is string &&
+        data.price is number && data.price >= 0;
+    }
+
+    function validateAppointmentUpdate(old, new) {
+      return old.branchId == new.branchId &&
+        old.serviceId == new.serviceId &&
+        (
+          (old.status == 'pending' && new.status in ['confirmed','cancelled']) ||
+          (old.status == 'confirmed' && new.status in ['cancelled','completed','no_show']) ||
+          (old.status == 'pending' && new.status == 'pending')
+        );
+    }
+  }
+}
